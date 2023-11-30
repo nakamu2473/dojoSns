@@ -1,18 +1,43 @@
 <template>
-    <div>
-      index
-    </div>
-    <nuxt-link to="/aaa">aaa</nuxt-link>
-    <nuxt-link to="/bbbb">bbbb</nuxt-link>
-    <nuxt-link to="/hoge">hoge</nuxt-link>
-    <nuxt-link to="/hoge/aaa">hoge-aaa</nuxt-link>
-    <div>
-        <input type="text" v-model="input.username">
-        <input type="text" v-model="input.password">
-    </div>
-    <p>{{  loginArea() }}</p>
-    <button :disable="!loginArea" @click="login">login</button>
-  </template>
+    <v-row justify="center">
+      <v-col
+        cols="12"
+        sm="10"
+        md="8"
+        lg="6"
+        >
+        <v-card ref="form">
+          <v-card-text>
+            <v-text-field
+              v-model="input.username"
+              label="Full Name"
+              placeholder="John Doe"
+            ></v-text-field>
+
+            <v-text-field
+                v-model="input.password"
+                name="input-10-1"
+                label="Normal with hint text"
+            ></v-text-field>
+            </v-card-text>
+            <div>
+                <input type="text" v-model="input.username">
+                <input type="text" v-model="input.password">
+
+            </div>
+            <p>{{  loginArea() }}</p>
+            <v-btn
+            color="primary"
+            variant="text"
+            @click="login"
+            :disable="!loginArea" 
+          >
+          login
+          </v-btn>
+      </v-card>
+    </v-col>
+  </v-row>
+</template>
   <script>
   export default{
       data(){
@@ -20,18 +45,20 @@
               input: {
                   username: "",
                   password: ""
-              }
+              },
+                loginMsg: ""
+
           }
       },
       methods:{
         loginArea() {
             if(this.input.username != "user") return false
-            if(this.input.password != "password") return false
+            if(this.input.password != "pass") return false
+            localStorage.setItem("name", "user")
             return true
         },
         login() {
-            this.$router.push("/aaa") 
-
+            this.$router.push("/list") 
         }
       }
   }
