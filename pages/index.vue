@@ -54,7 +54,7 @@
         loginArea() {
             if(this.input.username != "user") return false
             if(this.input.password != "pass") return false
-            localStorage.setItem("name", "user")
+            localStorage.setItem("user", "user")
             return true
         },
         login() {

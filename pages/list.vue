@@ -49,7 +49,7 @@ export default{
         return {
             note: "",
             notes: [],
-            user: localStorage.getItem("user")
+            user: ""
         }
     },
     methods:{
@@ -68,6 +68,8 @@ export default{
     mounted() {
         if(!localStorage.getItem("user")) {
             this.$router.push("/") 
+        }else{
+            this.user = localStorage.getItem("user")
         }
     }
 }
